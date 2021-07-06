@@ -1,6 +1,3 @@
-import { GetServerSideProps } from 'next'
-import { redirect } from 'next/dist/next-server/server/api-utils'
-import { parseCookies } from 'nookies'
 import { FormEvent, useContext, useState } from 'react'
 import { AuthContext } from '../contexts/AuthContext'
 import styles from '../styles/Home.module.css'
