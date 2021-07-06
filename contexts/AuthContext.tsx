@@ -36,7 +36,11 @@ export function AuthProvider ({ children }: AuthProviderProps)
 
     if(token) 
     {
-      api.get('/me').then(response => console.log(response))
+      api.get('/me').then(response => {
+        const { email, permissions, roles } = response.data
+
+        setUser({ email, permissions, roles})
+      })
     }
 
   }, [])
@@ -66,6 +70,8 @@ export function AuthProvider ({ children }: AuthProviderProps)
       maxAge: 60 * 60 * 24 * 30, // 30 days
       path: '/'
     })
+
+    api.defaults.headers['Authorization'] = `Bearer ${token}`
 
     Router.push('/dashboard')
    } catch (error) {
